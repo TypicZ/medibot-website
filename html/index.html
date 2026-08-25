@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MEDIBOT • Research Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- =========================
+       LOGIN
+  ========================== -->
+
+  <section id="loginScreen" class="login-screen">
+
+    <div class="login-orbit orbit-one"></div>
+    <div class="login-orbit orbit-two"></div>
+
+    <div class="login-card">
+
+      <div class="brand-mark">
+        <span>✦</span>
+      </div>
+
+      <p class="eyebrow">
+        RESEARCH PROTOTYPE
+      </p>
+
+      <h1>
+        MEDI<span>BOT</span>
+      </h1>
+
+      <p class="login-subtitle">
+        Medicine & Electronic Dose Intake Bot
+      </p>
+
+      <div class="demo-badge">
+        ● LOCAL RESEARCH TEST MODE
+      </div>
+
+      <form id="loginForm">
+
+        <label>
+          Username
+        </label>
+
+        <input
+          id="username"
+          value="caregiver"
+          autocomplete="username"
+          required
+        >
+
+        <label>
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          value="demo"
+          autocomplete="current-password"
+          required
+        >
+
+        <button
+          class="primary full"
+          type="submit"
+        >
+          Enter Dashboard
+          <span>→</span>
+        </button>
+
+      </form>
+
+      <p class="tiny-note">
+        Demo interface • No real medication is dispensed by this website.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       APP
+  ========================== -->
+
+  <div id="app" class="app hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="side-brand">
+
+        <div class="brand-mark small">
+          <span>✦</span>
+        </div>
+
+        <div>
+          <strong>MEDIBOT</strong>
+          <small>Research System</small>
+        </div>
+
+      </div>
+
+
+      <nav>
+
+        <button
+          class="nav-item active"
+          data-page="dashboard"
+        >
+          <span>⌂</span>
+          Dashboard
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="patient"
+        >
+          <span>◎</span>
+          Test Patient
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="schedule"
+        >
+          <span>＋</span>
+          Add Schedule
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="history"
+        >
+          <span>◷</span>
+          Dose History
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="results"
+        >
+          <span>▥</span>
+          Test Results
+        </button>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <div class="test-mode-card">
+
+          <div class="pulse"></div>
+
+          <div>
+            <strong>Research Test Mode</strong>
+            <small>Simulation enabled</small>
+          </div>
+
+        </div>
+
+        <button
+          id="logoutBtn"
+          class="logout"
+        >
+          ↪ Log out
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main">
+
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+
+        <div>
+
+          <p class="eyebrow">
+            MEDIBOT WEB DASHBOARD
+          </p>
+
+          <h2 id="pageTitle">
+            Good evening, Caregiver.
+          </h2>
+
+        </div>
+
+
+        <div class="top-actions">
+
+          <button
+            id="demoAdvance"
+            class="ghost-btn"
+          >
+            Run Demo Event
+          </button>
+
+          <div class="profile">
+
+            <div class="avatar">
+              C
+            </div>
+
+            <div>
+              <strong>Caregiver</strong>
+              <small>TEST-001</small>
+            </div>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <!-- =========================
+           DASHBOARD
+      ========================== -->
+
+      <section
+        id="dashboard"
+        class="page active-page"
+      >
+
+        <div class="hero-grid">
+
+          <div class="next-dose card">
+
+            <div class="section-label">
+
+              <span>
+                NEXT DOSE
+              </span>
+
+              <span class="live-dot">
+                ● LIVE
+              </span>
+
+            </div>
+
+
+            <div class="dose-main">
+
+              <div>
+
+                <p class="medicine-type">
+                  LIQUID • CHANNEL 1
+                </p>
+
+                <h1 id="nextMedicine">
+                  Liquid A
+                </h1>
+
+                <div class="dose-value">
+
+                  <strong id="nextDose">
+                    5.0
+                  </strong>
+
+                  <span>
+                    mL
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="time-block">
+
+                <strong id="nextTime">
+                  10:30
+                </strong>
+
+                <span>
+                  AM
+                </span>
+
+                <small>
+                  Today
+                </small>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="status-pill scheduled"
+              id="nextStatus"
+            >
+              ● SCHEDULED
+            </div>
+
+          </div>
+
+
+          <!-- ROBOT VISUAL -->
+
+          <div class="visual-card card">
+
+            <div class="robot-visual">
+
+              <div class="robot-ring"></div>
+
+              <div class="robot-core">
+                ✦
+              </div>
+
+            </div>
+
+            <div>
+
+              <p class="eyebrow">
+                SYSTEM
+              </p>
+
+              <h3>
+                Closed-loop ready
+              </h3>
+
+              <p class="muted">
+                Target → dispense → measure → log
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="stats-grid">
+
+          <div class="status-card card">
+
+            <div class="card-head">
+
+              <h3>
+                Robot Status
+              </h3>
+
+              <span class="online">
+                ONLINE
+              </span>
+
+            </div>
+
+
+            <div class="status-list">
+
+              <div>
+
+                <span>
+                  <i class="ok"></i>
+                  Robot Online
+                </span>
+
+                <b>
+                  Ready
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  <i class="ok"></i>
+                  Cup Detected
+                </span>
+
+                <b>
+                  Detected
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  <i class="ok"></i>
+                  Scale
+                </span>
+
+                <b>
+                  Ready
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  <i class="ok"></i>
+                  Pill System
+                </span>
+
+                <b>
+                  Ready
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  <i class="ok"></i>
+                  Wi-Fi
+                </span>
+
+                <b>
+                  Connected
+                </b>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- TODAY'S SCHEDULE -->
+
+          <div class="schedule-card card">
+
+            <div class="card-head">
+
+              <h3>
+                Today's Schedule
+              </h3>
+
+              <button
+                class="text-btn"
+                data-page-link="schedule"
+              >
+                + Add
+              </button>
+
+            </div>
+
+            <div
+              id="todaySchedule"
+              class="timeline"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- QUICK BUTTONS -->
+
+        <div class="quick-row">
+
+          <button
+            class="quick card"
+            data-page-link="schedule"
+          >
+
+            <span>＋</span>
+
+            <div>
+
+              <strong>
+                Add Schedule
+              </strong>
+
+              <small>
+                Set a test dose
+              </small>
+
+            </div>
+
+            <b>
+              →
+            </b>
+
+          </button>
+
+
+          <button
+            class="quick card"
+            data-page-link="history"
+          >
+
+            <span>◷</span>
+
+            <div>
+
+              <strong>
+                View History
+              </strong>
+
+              <small>
+                Review dose events
+              </small>
+
+            </div>
+
+            <b>
+              →
+            </b>
+
+          </button>
+
+
+          <button
+            class="quick card"
+            id="exportBtn"
+          >
+
+            <span>⇩</span>
+
+            <div>
+
+              <strong>
+                Export Test Data
+              </strong>
+
+              <small>
+                Download CSV
+              </small>
+
+            </div>
+
+            <b>
+              →
+            </b>
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           PATIENT
+      ========================== -->
+
+      <section
+        id="patient"
+        class="page"
+      >
+
+        <div class="page-intro">
+
+          <div>
+
+            <p class="eyebrow">
+              PROFILE
+            </p>
+
+            <h2>
+              Test Patient Profile
+            </h2>
+
+            <p>
+              Use demonstration data only.
+              Do not enter real medical records.
+            </p>
+
+          </div>
+
+          <span class="safe-badge">
+            TEST DATA ONLY
+          </span>
+
+        </div>
+
+
+        <div class="form-card card">
+
+          <div class="form-grid">
+
+            <div>
+
+              <label>
+                Patient ID
+              </label>
+
+              <input
+                id="patientId"
+                value="TEST-001"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Patient Name
+              </label>
+
+              <input
+                id="patientName"
+                value="Patient A"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Age Group
+              </label>
+
+              <select>
+
+                <option>
+                  Adult
+                </option>
+
+                <option>
+                  Teen
+                </option>
+
+                <option>
+                  Senior
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Caregiver
+              </label>
+
+              <input
+                value="Test Caregiver"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Contact
+              </label>
+
+              <input
+                value="Test Contact"
+              >
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="primary"
+            id="savePatient"
+          >
+            Save Profile
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           SCHEDULE
+      ========================== -->
+
+      <section
+        id="schedule"
+        class="page"
+      >
+
+        <div class="page-intro">
+
+          <div>
+
+            <p class="eyebrow">
+              CONTROL PANEL
+            </p>
+
+            <h2>
+              Add Medicine Schedule
+            </h2>
+
+            <p>
+              Create instructions for the prototype controller.
+            </p>
+
+          </div>
+
+          <span class="safe-badge">
+            SIMULATION
+          </span>
+
+        </div>
+
+
+        <div class="form-card card">
+
+          <div class="type-switch">
+
+            <button
+              class="type-btn active"
+              data-type="Liquid"
+              type="button"
+            >
+              💧 Liquid
+            </button>
+
+            <button
+              class="type-btn"
+              data-type="Pill"
+              type="button"
+            >
+              ● Pill
+            </button>
+
+          </div>
+
+
+          <div class="form-grid">
+
+            <div>
+
+              <label>
+                Test Patient
+              </label>
+
+              <select id="formPatient">
+
+                <option>
+                  Patient A
+                </option>
+
+                <option>
+                  Patient B
+                </option>
+
+                <option>
+                  Patient C
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Medicine / Test Material
+              </label>
+
+              <input
+                id="formMedicine"
+                value="Liquid A"
+              >
+
+            </div>
+
+
+            <div id="channelField">
+
+              <label>
+                Liquid Channel
+              </label>
+
+              <select id="channel">
+
+                <option>
+                  Channel 1
+                </option>
+
+                <option>
+                  Channel 2
+                </option>
+
+                <option>
+                  Channel 3
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div
+              id="compartmentField"
+              class="hidden"
+            >
+
+              <label>
+                Pill Compartment
+              </label>
+
+              <select>
+
+                <option>
+                  Compartment 1
+                </option>
+
+                <option>
+                  Compartment 2
+                </option>
+
+                <option>
+                  Compartment 3
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Target Dose
+              </label>
+
+              <div class="input-unit">
+
+                <input
+                  id="formDose"
+                  type="number"
+                  value="5.0"
+                  step="0.1"
+                  min="0"
+                >
+
+                <span id="unit">
+                  mL
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Date
+              </label>
+
+              <input
+                id="formDate"
+                type="date"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Time
+              </label>
+
+              <input
+                id="formTime"
+                type="time"
+                value="10:30"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Reminder
+              </label>
+
+              <select>
+
+                <option>
+                  15 minutes
+                </option>
+
+                <option>
+                  15 seconds (demo)
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Missed Dose
+              </label>
+
+              <select>
+
+                <option>
+                  30 minutes
+                </option>
+
+                <option>
+                  30 seconds (demo)
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Status
+              </label>
+
+              <select>
+
+                <option>
+                  Active
+                </option>
+
+                <option>
+                  Disabled
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              class="ghost-btn"
+              id="clearForm"
+              type="button"
+            >
+              Clear
+            </button>
+
+            <button
+              class="primary"
+              id="saveSchedule"
+              type="button"
+            >
+              Save Schedule →
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           HISTORY
+      ========================== -->
+
+      <section
+        id="history"
+        class="page"
+      >
+
+        <div class="page-intro">
+
+          <div>
+
+            <p class="eyebrow">
+              RESEARCH DATA
+            </p>
+
+            <h2>
+              Dose History
+            </h2>
+
+            <p>
+              Recorded prototype events and collection status.
+            </p>
+
+          </div>
+
+          <button
+            class="primary"
+            id="exportBtn2"
+            type="button"
+          >
+            ⇩ Export CSV
+          </button>
+
+        </div>
+
+
+        <div class="table-card card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Time
+                </th>
+
+                <th>
+                  Medicine
+                </th>
+
+                <th>
+                  Target
+                </th>
+
+                <th>
+                  Actual
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Error
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="historyBody"></tbody>
+
+          </table>
+
+        </div>
+
+
+        <div
+          id="eventDetail"
+          class="event-detail card hidden"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           RESULTS
+      ========================== -->
+
+      <section
+        id="results"
+        class="page"
+      >
+
+        <div class="page-intro">
+
+          <div>
+
+            <p class="eyebrow">
+              CHAPTER 4 SUPPORT
+            </p>
+
+            <h2>
+              Research Test Results
+            </h2>
+
+            <p>
+              Numbers shown here are demonstration values only.
+            </p>
+
+          </div>
+
+          <span class="safe-badge">
+            DEMO DATA
+          </span>
+
+        </div>
+
+
+        <div class="result-grid">
+
+          <div class="metric card">
+
+            <span>
+              LIQUID DISPENSING
+            </span>
+
+            <strong>
+              20
+            </strong>
+
+            <small>
+              sample trials configured
+            </small>
+
+            <div class="mini-bars">
+
+              <i style="height:55%"></i>
+              <i style="height:72%"></i>
+              <i style="height:88%"></i>
+              <i style="height:64%"></i>
+              <i style="height:94%"></i>
+
+            </div>
+
+          </div>
+
+
+          <div class="metric card">
+
+            <span>
+              PILL TESTS
+            </span>
+
+            <strong>
+              30
+            </strong>
+
+            <small>
+              single-release target
+            </small>
+
+            <div class="progress">
+
+              <i style="width:93%"></i>
+
+            </div>
+
+            <small>
+              Example success rate: 93%
+            </small>
+
+          </div>
+
+
+          <div class="metric card">
+
+            <span>
+              SCHEDULE TESTS
+            </span>
+
+            <strong>
+              20
+            </strong>
+
+            <small>
+              alarm / logging trials
+            </small>
+
+            <div class="progress">
+
+              <i style="width:100%"></i>
+
+            </div>
+
+            <small>
+              Example alarm success: 100%
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="notice card">
+
+          <strong>
+            Research Test Mode
+          </strong>
+
+          <p>
+            Use simulated liquid and placebo/test pills only.
+            The website records events; it does not prove that
+            medicine was swallowed.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
